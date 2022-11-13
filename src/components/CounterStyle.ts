@@ -23,3 +23,7 @@ export const CounterValueDiv = styled.div`
   margin: 2rem 0;
   font-weight: bold;
 `;
+
+export const CounterButton = styled.button`
+  margin: 1rem;
+`
