@@ -1,18 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Counter } from '@/store/types';
+import { CounterState } from '@/store/types';
+
+// Why Redux Toolkit is How To Use Redux Today
+// https://redux.js.org/introduction/why-rtk-is-redux-today
+
+// Redux Docs Basic Example
+// https://redux.js.org/introduction/getting-started#redux-toolkit-example
+
+const initialState: CounterState = { counter: 0 };
 
 const counterSlice = createSlice({
   name: 'counters',
-  initialState: { counter: 0 },
+  initialState,
   reducers: {
-    increment(state: Counter) {
+    increment(state) {
       state.counter += 1;
     },
-    decrement(state: Counter) {
+    decrement(state) {
       state.counter -= 1;
     },
+    incrementByAmount: (state, action) => {
+      state.counter += action.payload
+    }
   },
 });
 
-export const { increment, decrement } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 export default counterSlice.reducer;
