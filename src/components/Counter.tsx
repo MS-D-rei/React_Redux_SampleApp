@@ -4,33 +4,41 @@ import {
   CounterMain,
   CounterValueDiv,
 } from '@/components/CounterStyle';
-import { decrement, increment } from '@/store/slice';
+import { decrement, increment, incrementByAmount, toggleCounter } from '@/store/slice';
 import { useAppDispatch, useAppSelector } from '@/hooks/store-hooks';
 
 function Counter() {
-  const count = useAppSelector((state) => state.counters.counter);
   const dispatch = useAppDispatch();
+  const count = useAppSelector((state) => state.counters.counter);
+  const isShownCounter = useAppSelector((state) => state.counters.isShown);
 
   console.log(count);
-
-  const toggleCounterHandler = () => {};
-
+  
   const incrementHandler = () => {
     dispatch(increment());
     console.log('incremented');
   };
-
+  
   const decrementHandler = () => {
     dispatch(decrement());
     console.log('decremented');
   };
-
+  
+  const incrementByAmountHandler = () => {
+    dispatch(incrementByAmount(5))
+  }
+  
+  const toggleCounterHandler = () => {
+    dispatch(toggleCounter())
+  };
+  
   return (
     <CounterMain>
       <CounterHeadline1>Redux Counter</CounterHeadline1>
-      <CounterValueDiv>--- COUNTER VALUE: {count} ---</CounterValueDiv>
+      {isShownCounter && <CounterValueDiv>--- COUNTER VALUE: {count} ---</CounterValueDiv>}
       <div>
         <CounterButton onClick={incrementHandler}>Increment</CounterButton>
+        <CounterButton onClick={incrementByAmountHandler}>Increment by 5</CounterButton>
         <CounterButton onClick={decrementHandler}>Decrement</CounterButton>
       </div>
       <CounterButton onClick={toggleCounterHandler}>
