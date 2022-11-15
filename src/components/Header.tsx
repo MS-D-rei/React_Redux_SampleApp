@@ -5,12 +5,19 @@ import {
   HeaderLI,
   HeaderUL,
 } from '@/components/HeaderStyle';
-import { useAppSelector } from '@/hooks/store-hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/store-hooks';
+import { logout } from '@/store/AuthSlice';
 
 function Header() {
+  const dispatch = useAppDispatch();
+
   const isAuth = useAppSelector(
     (state) => state.authentication.isAuthenticated
   );
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <HeaderHeader>
       <h1>Redux Auth</h1>
@@ -24,7 +31,7 @@ function Header() {
               <HeaderAnchor href="/">My Sales</HeaderAnchor>
             </HeaderLI>
             <HeaderLI>
-              <HeaderButton>Logout</HeaderButton>
+              <HeaderButton onClick={logoutHandler}>Logout</HeaderButton>
             </HeaderLI>
           </HeaderUL>
         </nav>
