@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UseProfileMain = styled.main`
+export const UserProfileMain = styled.main`
   margin: 5rem auto;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   width: 40rem;
