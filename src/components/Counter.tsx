@@ -4,13 +4,13 @@ import {
   CounterMain,
   CounterValueDiv,
 } from '@/components/CounterStyle';
-import { decrement, increment, incrementByAmount, toggleCounter } from '@/store/slice';
+import { decrement, increment, incrementByAmount, toggleCounter } from '@/store/CounterSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/store-hooks';
 
 function Counter() {
   const dispatch = useAppDispatch();
-  const count = useAppSelector((state) => state.counters.counter);
-  const isShownCounter = useAppSelector((state) => state.counters.isShown);
+  const count = useAppSelector((state) => state.counter.value);
+  const isShownCounter = useAppSelector((state) => state.counter.isShown);
 
   console.log(count);
   

@@ -7,24 +7,24 @@ import { createSlice } from '@reduxjs/toolkit';
 // https://redux.js.org/introduction/getting-started#redux-toolkit-example
 
 interface CounterState {
-  counter: number;
+  value: number;
   isShown: boolean;
 }
 
-const initialState: CounterState = { counter: 0, isShown: true };
+const initialCounterState: CounterState = { value: 0, isShown: true };
 
 const counterSlice = createSlice({
-  name: 'counters',
-  initialState,
+  name: 'counter',
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
-      state.counter += 1;
+      state.value += 1;
     },
     decrement(state) {
-      state.counter -= 1;
+      state.value -= 1;
     },
     incrementByAmount: (state, action) => {
-      state.counter += action.payload;
+      state.value += action.payload;
     },
     toggleCounter: (state) => {
       state.isShown = !state.isShown;
@@ -32,5 +32,6 @@ const counterSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount, toggleCounter } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount, toggleCounter } =
+  counterSlice.actions;
 export default counterSlice.reducer;
